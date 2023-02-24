@@ -15,22 +15,15 @@ const BACKGROUND_FETCH_TASK = 'background-fetch';
 // 1. Define the task by providing a name and the function that should be executed
 // Note: This needs to be called in the global scope (e.g outside of your React components)
 
-TaskManager.defineTask(BACKGROUND_FETCH_TASK, async ({ data, error }) => {
-  if (error) {
-    // Error occurred - check `error.message` for more details.
-    console.log(error.message);
-    return;
-  }
-  if (data) {
-    //below 3 lines of code is the accelerometer is for the accelerometer tracking
-    accelerometer.subscribe(accelerometerData => {
-      console.log(accelerometerData);
-    })
+TaskManager.defineTask(BACKGROUND_FETCH_TASK, async () => {
 
-    gyroscope.subscribe((gyroscopeData) => {
-      console.log(gyroscopeData)
-    })
-  }
+  accelerometer.subscribe(accelerometerData => {
+    console.log(accelerometerData);
+  })
+
+  gyroscope.subscribe((gyroscopeData) => {
+    console.log(gyroscopeData)
+  })
   
   console.log("success");
 
